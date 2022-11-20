@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\{HomeController, PlayerController, PokemonController};
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'show']);
+
+Route::get('/players', [PlayerController::class, 'show']);
+
+Route::get('/pokemons', [PokemonController::class, 'show']);
