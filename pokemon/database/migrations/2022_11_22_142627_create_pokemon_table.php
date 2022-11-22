@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pokemons', function (Blueprint $table) {
+        Schema::create('pokemon', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('energy_id')->constrained('energies');
+            $table->string('name', 64);
+            $table->foreignId('energy_id')->constrained('energy');
             $table->integer('level');
             $table->integer('max_health_points');
             $table->integer('normal_damage');
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pokemons');
+        Schema::dropIfExists('pokemon');
     }
 };

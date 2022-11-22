@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('energies', function (Blueprint $table) {
+        Schema::create('combat_type', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name', 16);
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('energies');
+        Schema::dropIfExists('combat_type');
     }
 };
