@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         PlayerSeeder::run();
         CombatTypeSeeder::run();
         CombatStatsSeeder::run();
+        CombatRoundSeeder::run();
     }
 }
