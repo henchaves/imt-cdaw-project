@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         PokemonSeeder::run();
         PlayerSeeder::run();
         CombatTypeSeeder::run();
+        CombatStatsSeeder::run();
     }
 }
