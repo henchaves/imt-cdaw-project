@@ -18,4 +18,4 @@ Route::get('/', [HomeController::class, 'show']);
 
 Route::get('/players', [PlayerController::class, 'show']);
 
-Route::get('/pokemons', [PokemonController::class, 'show']);
+Route::get('/pokemons', [PokemonController::class, 'showAll']);
