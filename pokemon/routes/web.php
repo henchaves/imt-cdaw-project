@@ -16,6 +16,6 @@ use \App\Http\Controllers\{HomeController, PlayerController, PokemonController};
 
 Route::get('/', [HomeController::class, 'show']);
 
-Route::get('/players', [PlayerController::class, 'show']);
+Route::get('/players', [PlayerController::class, 'showAll']);
 
 Route::get('/pokemons', [PokemonController::class, 'showAll']);
