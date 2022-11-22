@@ -10,4 +10,9 @@ class Pokemon extends Model
     use HasFactory;
     protected $table = 'pokemon';
     public $timestamps = false;
+
+    public function energy()
+    {
+        return $this->belongsTo(Energy::class);
+    }
 }
