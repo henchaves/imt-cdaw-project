@@ -23,4 +23,8 @@ class Player extends Model
         $combats = $wins->union($loses);
         return $combats;
     }
+
+    public function energies() {
+        return $this->hasMany(MasteredEnergy::class, 'player_id');
+    }
 }
