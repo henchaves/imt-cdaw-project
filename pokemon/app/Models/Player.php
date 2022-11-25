@@ -16,4 +16,11 @@ class Player extends Model
         'victories' => 0
     ];
 
+
+    public function combats() {
+        $wins = $this->hasMany(CombatStats::class, 'winner_id');
+        $loses = $this->hasMany(CombatStats::class, 'loser_id');
+        $combats = $wins->union($loses);
+        return $combats;
+    }
 }
