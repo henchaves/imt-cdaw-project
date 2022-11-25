@@ -14,8 +14,13 @@ use \App\Http\Controllers\{HomeController, PlayerController, PokemonController};
 |
 */
 
+// HomeController
 Route::get('/', [HomeController::class, 'show']);
 
+// PlayerController
 Route::get('/players', [PlayerController::class, 'showAll']);
+Route::get('/players/{id}', [PlayerController::class, 'showOneById'])->where('id', '[0-9]+');
+Route::get('/players/{name}', [PlayerController::class, 'showOneByName']);
 
+// PokemonController
 Route::get('/pokemons', [PokemonController::class, 'showAll']);
