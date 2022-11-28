@@ -33,3 +33,13 @@ Route::get('/pokemons', [PokemonController::class, 'showAll']);
 //CombatController
 Route::get('/combats', [CombatController::class, 'showAll']);
 Route::get('/combats/{id}', [CombatController::class, 'showOneById'])->where('id', '[0-9]+');
+
+//Login
+Route::get('/login', function() {
+  return view('login');
+});
+
+//How To Play
+Route::get('/howtoplay', function() {
+  return view('how_to_play');
+});
