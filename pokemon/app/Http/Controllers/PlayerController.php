@@ -15,7 +15,6 @@ class PlayerController extends Controller
 
     public function showOneById($id) {
         $player = Player::find($id);
-        // return $player->combats;
         return $this->showPlayerProfile($player);
     }
 
