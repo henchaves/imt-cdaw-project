@@ -19,14 +19,13 @@ class CombatStats extends Model
     }
 
     public function winner() {
-        $winner = $this->belongsTo(Pokemon::class, 'winner_id');
         return $this->belongsTo(Pokemon::class, 'winner_id');
     }
 
     public function loser() {
         return $this->belongsTo(Pokemon::class, 'loser_id');
     }
-    
+
     public function players() {
         return $this->hasMany(Player::class, 'id', 'winner_id')->union($this->hasMany(Player::class, 'id', 'loser_id'));
     }
