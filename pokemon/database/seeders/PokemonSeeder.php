@@ -14,7 +14,7 @@ class PokemonSeeder extends Seeder
      *
      * @return void
      */
-    public static function run()
+    public function run()
     {
         $json = Storage::disk('local')->get('public/pokemons.json');
         $pokemons = json_decode($json, true);

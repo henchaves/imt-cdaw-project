@@ -12,7 +12,7 @@ class CombatStatsSeeder extends Seeder
      *
      * @return void
      */
-    public static function run()
+    public function run()
     {
         \App\Models\CombatStats::factory(20)->create();
     }

@@ -12,7 +12,7 @@ class MasteredEnergySeeder extends Seeder
      *
      * @return void
      */
-    public static function run()
+    public function run()
     {
         \App\Models\MasteredEnergy::factory(300)->create();
     }
