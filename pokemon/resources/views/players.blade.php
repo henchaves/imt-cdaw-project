@@ -2,7 +2,17 @@
 
 @section('title', 'Players')
 
+@section('css')
+<link rel="stylesheet" href="{{asset('css/players.css')}}">
+@endsection
+
 @section('content')
-<h3>Players JSON:</h3>
-{{$players}}
+<header>
+  <x-navbar />
+</header>
+
+<main class="container">
+  <h3>Players</h3>
+  {{$players}}
+</main>
 @endsection
