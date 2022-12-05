@@ -12,6 +12,7 @@
 </header>
 
 <main class="container">
+  <h3 class="text-center">Connect to an account</h3>
   <div class="row">
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
       <div class="card border-0 shadow rounded-3 my-5">

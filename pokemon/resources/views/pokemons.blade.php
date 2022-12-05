@@ -13,7 +13,11 @@
 </header>
 
 <main class="container">
-    <h3 class="text-center">Pokémons Table</h3>
+    <div>
+        <h3 class="text-center">Pokémons Table</h3>
+        <p class="text-center">Check out the table below to see all the pokémons available in the game.</p>
+    </div>
+
     <table class="table table-striped" id="pokemonsTable">
         <thead>
             <tr>
