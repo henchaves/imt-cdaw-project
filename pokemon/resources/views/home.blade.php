@@ -28,10 +28,11 @@
                 </ul>
                 <div class="login-button-wrapper d-flex flex-column">
                     <p class="text-white login-status">
-                        You are not logged in
+                        You are not logged in!
                     </p>
-                    <a class="btn btn-bd-primary" href="{{ url('/login') }}">Login</a>
+                    <a class="btn btn-bd-primary" href="{{ url('/login') }}">Login or Register</a>
                 </div>
+                <hr>
             </div>
         </div>
     </nav>
