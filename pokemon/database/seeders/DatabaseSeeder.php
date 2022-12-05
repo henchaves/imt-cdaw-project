@@ -16,13 +16,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             EnergySeeder::class,
+            PokemonSeeder::class,
         ]);
 
-        PokemonSeeder::run();
-        PlayerSeeder::run();
-        CombatTypeSeeder::run();
-        CombatStatsSeeder::run();
-        CombatRoundSeeder::run();
-        MasteredEnergySeeder::run();
+        // PlayerSeeder::run();
+        // CombatTypeSeeder::run();
+        // CombatStatsSeeder::run();
+        // CombatRoundSeeder::run();
+        // MasteredEnergySeeder::run();
     }
 }
