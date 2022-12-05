@@ -15,35 +15,35 @@
 <main class="container">
     <div>
         <h3 class="text-center">Pokémons Table</h3>
-        <p class="text-center">Check out the table below to see all the pokémons available in the game.</p>
+        <p class="text-center">Check out the table below to see all the Pokémons available in the game.</p>
     </div>
 
     <table class="table table-striped" id="pokemonsTable">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Energy</th>
-                <th>Level</th>
-                <th>HP</th>
-                <th>Normal Damage</th>
-                <th>Special Damage</th>
-                <th>Special Defense</th>
-                <th>Image</th>
+                <th hidden>ID</th>
+                <th data-orderable="false"></th>
+                <th class="align-middle">Name</th>
+                <th class="align-middle">Energy</th>
+                <th class="align-middle">Level</th>
+                <th class="align-middle">HP</th>
+                <th class="align-middle text-center">Normal Damage</th>
+                <th class="align-middle text-center">Special Damage</th>
+                <th class="align-middle text-center">Special Defense</th>
             </tr>
         </thead>
         <tbody>
             @foreach($pokemons as $pokemon)
             <tr>
-                <td>{{$pokemon->id}}</td>
-                <td>{{$pokemon->name}}</td>
-                <td>{{$pokemon->energy->name}}</td>
-                <td>{{$pokemon->level}}</td>
-                <td>{{$pokemon->max_health_points}}</td>
-                <td>{{$pokemon->normal_damage}}</td>
-                <td>{{$pokemon->special_damage}}</td>
-                <td>{{$pokemon->special_defense}}</td>
-                <td><img src="{{$pokemon->image_url}}" width="50px" height="50px" /></td>
+                <td hidden>{{$pokemon->id}}</td>
+                <td><img src="{{$pokemon->image_url}}" width="75px" height="75px" /></td>
+                <td class="align-middle">{{ucfirst($pokemon->name)}}</td>
+                <td class="align-middle">{{ucfirst($pokemon->energy->name)}}</td>
+                <td class="align-middle">{{$pokemon->level}}</td>
+                <td class="align-middle">{{$pokemon->max_health_points}}</td>
+                <td class="align-middle text-center">{{$pokemon->normal_damage}}</td>
+                <td class="align-middle text-center">{{$pokemon->special_damage}}</td>
+                <td class="align-middle text-center">{{$pokemon->special_defense}}</td>
             </tr>
             @endforeach
         </tbody>
