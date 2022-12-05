@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Energy;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class EnergySeeder extends Seeder
 {
@@ -12,8 +14,15 @@ class EnergySeeder extends Seeder
      *
      * @return void
      */
-    public static function run()
+    public function run()
     {
-        \App\Models\Energy::factory(10)->create();
+        $json = Storage::disk('local')->get('public/energies.json');
+        $energies = json_decode($json, true);
+
+        foreach ($energies as $energy) {
+            Energy::create([
+                'name' => $energy,
+            ]);
+        }
     }
 }

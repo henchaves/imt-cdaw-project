@@ -14,7 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        EnergySeeder::run();
+        $this->call([
+            EnergySeeder::class,
+        ]);
+
         PokemonSeeder::run();
         PlayerSeeder::run();
         CombatTypeSeeder::run();
