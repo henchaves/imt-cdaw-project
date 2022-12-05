@@ -13,7 +13,7 @@ class CombatTypeSeeder extends Seeder
      *
      * @return void
      */
-    public static function run()
+    public function run()
     {
         DB::table('combat_type')->insert([
             'name' => 'manual',

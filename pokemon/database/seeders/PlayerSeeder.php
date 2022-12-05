@@ -12,7 +12,7 @@ class PlayerSeeder extends Seeder
      *
      * @return void
      */
-    public static function run()
+    public function run()
     {
         \App\Models\Player::factory(10)->create();
     }

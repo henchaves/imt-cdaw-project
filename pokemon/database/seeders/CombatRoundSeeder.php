@@ -12,7 +12,7 @@ class CombatRoundSeeder extends Seeder
      *
      * @return void
      */
-    public static function run()
+    public function run()
     {
         \App\Models\CombatRound::factory(60)->create();
     }
