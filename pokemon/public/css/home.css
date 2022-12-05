@@ -10,6 +10,8 @@
   --bs-btn-hover-color: #F2798C;
   --bs-btn-hover-bg: #FFF;
   --bs-btn-hover-border-color: #FFF;
+  --bs-btn-active-color: #F2798C;
+  --bs-btn-active-bg: #FFF;
 }
 
 .login-status {
