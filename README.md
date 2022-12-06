@@ -13,6 +13,11 @@ You must have installed on your machine:
 - [docker-compose](https://docs.docker.com/compose/install/)
 
 ### 4. How to run
+1) Open the terminal with the current directory
+2) Execute `cd pokemon` to move to `pokemon` folder
+3) Run `docker-compose up`
+4) Open the browser on `localhost`
+5) Enjoy the app :)
 
 
 
