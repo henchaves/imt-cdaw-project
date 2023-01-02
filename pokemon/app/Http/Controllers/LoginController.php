@@ -13,13 +13,14 @@ use App\Models\{
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
+
 class LoginController extends Controller
 {
     // Check if email exists in database
     public function checkEmail(Request $request)
     {
         $email = $request->email;
-        $user = \App\Models\User::where('email', $email)->first();
+        $user = User::where('email', $email)->first();
 
         if ($user) {
             return response()->json(['message' => 'Email exists'], 200);
@@ -33,7 +34,7 @@ class LoginController extends Controller
         $token = $request->token;
         $token = Token::where('token', $token)->first();
         if ($token) {
-            $user = $this->user($token->token);
+            $user = $token->user;
             return response()->json(['message' => 'Token exists', 'user' => $user], 200);
         } else {
             return response()->json(['message' => 'Token does not exist'], 404);
@@ -50,34 +51,12 @@ class LoginController extends Controller
         ]);
 
         $data = $request->all();
-        $check = $this->create($data);
+        $check = UserController::create($data);
 
         if ($check) {
             return response()->json(['message' => 'Registered'], 201);
         }
         return response()->json(['message' => 'Not Registered'], 500);
-    }
-
-    public function create(array $data)
-    {
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password'])
-        ]);
-
-        // $player = Player::create([
-        //     'name' => $user->name,
-        //     'level' => 0,
-        //     'victories' => 0
-        // ]);
-
-        // create Player with same name
-        $player = new Player();
-        $player->name = $user->name;
-        $player->save();
-
-        return $user;
     }
 
     // Authenticate

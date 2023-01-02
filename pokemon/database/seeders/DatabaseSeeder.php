@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             EnergySeeder::class,
             PokemonSeeder::class,
-            PlayerSeeder::class,
+            UserSeeder::class,
+            // PlayerSeeder::class,
             CombatTypeSeeder::class,
             CombatStatsSeeder::class,
             CombatRoundSeeder::class,
