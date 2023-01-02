@@ -38,12 +38,14 @@ Route::get('/combats/{id}', [CombatController::class, 'showOneById'])->where('id
 //Login
 Route::get('/login', function() {
   return view('login');
-});
-
-// Check if email exists in database
-Route::get('/checkemail/{email}', [LoginController::class, 'checkEmail'])->where('email', '[a-zA-Z0-9@.]+');
+})->name('login');
 
 //How To Play
 Route::get('/howtoplay', function() {
   return view('how_to_play');
 });
+
+// Player Profile (Authenticated)
+Route::get('/profile', function() {
+  return "My Profile";
+})->middleware('auth')->name('profile');

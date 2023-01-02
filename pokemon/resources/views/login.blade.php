@@ -35,7 +35,7 @@
               <button id="form-button" class="btn btn-primary btn-login text-uppercase fw-bold" type="submit" data-behaviour="check-email">next</button>
             </div>
             <div class="alert alert-danger" role="alert" id="error-message" hidden>
-              <p id="error-message-text"></p>
+              <p id="error-message-text" style="color: red;"></p>
             </div>
           </form>
         </div>

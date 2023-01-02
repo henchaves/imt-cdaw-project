@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\{
+    LoginController
+  };
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +20,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Check if email exists in database
+Route::get('/checkemail/{email}', [LoginController::class, 'checkEmail'])->where('email', '[a-zA-Z0-9@.]+');
+
+// Authenticate
+Route::post('/authenticate', [LoginController::class, 'authenticate']);
+
+// Register
+Route::post('/register', [LoginController::class, 'register']);
+
+// Logout
+Route::get('/logout', [LoginController::class, 'logout']);
