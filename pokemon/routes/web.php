@@ -5,7 +5,8 @@ use \App\Http\Controllers\{
   CombatController, 
   HomeController, 
   PlayerController, 
-  PokemonController
+  PokemonController,
+  LoginController
 };
 
 /*
@@ -38,6 +39,9 @@ Route::get('/combats/{id}', [CombatController::class, 'showOneById'])->where('id
 Route::get('/login', function() {
   return view('login');
 });
+
+// Check if email exists in database
+Route::get('/checkemail/{email}', [LoginController::class, 'checkEmail'])->where('email', '[a-zA-Z0-9@.]+');
 
 //How To Play
 Route::get('/howtoplay', function() {
