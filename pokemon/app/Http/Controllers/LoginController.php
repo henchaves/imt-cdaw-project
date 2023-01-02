@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Hash;
 use Session;
-use App\Models\User;
+use App\Models\{
+    Token,
+    User
+};
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -61,7 +65,17 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return response()->json(['message' => 'Authenticated'], 200);
+            $user = Auth::user();
+
+            $token = Token::create([
+                'token' => Str::random(60),
+                'user_id' => $user->id
+            ]);
+
+            return response()->json([
+                'message' => 'Authenticated', 
+                'token' => $token->token
+            ], 200);
         }
         return response()->json(['message' => 'Not Authenticated'], 404);
     }

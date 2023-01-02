@@ -38,9 +38,8 @@ async function handleLogin() {
   errorMessage.parentNode.hidden = true;
 
   if (response.status === 200) {
-    // TO DO: Store token in local storage
-    // const data = await response.json();
-    // localStorage.setItem('token', data.token);
+    const data = await response.json();
+    localStorage.setItem('POKEMON_BATTLES_USER_JWT', data.token);
     window.location.href = '/';
   } else {
     errorMessage.parentNode.hidden = false;
