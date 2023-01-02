@@ -33,9 +33,26 @@ class PlayerController extends Controller
         ]);
     }
 
+    public function getAll() {
+        // return as JSON
+        $players = Player::all();
+        return response()->json($players);
+    }
+
     public function getOneByName($name) {
         // return as JSON
         $player = Player::where('name', $name)->first();
+        return response()->json($player);
+    }
+
+    public function getOneById($id) {
+        $player = Player::find($id);
+        $energies = [];
+        foreach ($player->energies as $energy) {
+            $energies[] = $energy->energy;
+        }
+        
+        $player["energies"] = $energies;
         return response()->json($player);
     }
 }

@@ -19,10 +19,18 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Player profile</h5>
-            <p class="card-text">Username: <span id="username-span"></span></p>
-            <p class="card-text">Wins: <span id="wins-span"></span></p>
-            <p class="card-text">Level: <span id="level-span"></span></p>
-            <p class="card-text">Mastered energies: <span id="mastered-energies-span"></span></p>
+            <p class="card-text">Username:
+              <strong id="player-profile-username"></strong>
+            </p>
+            <p class="card-text">Wins:
+              <strong id="player-profile-wins"></strong>
+            </p>
+            <p class="card-text">Level:
+              <strong id="player-profile-level"></strong>
+            </p>
+            <p class="card-text">Mastered energies:
+              <strong id="player-profile-energies"></strong>
+            </p>
           </div>
         </div>
       </div>

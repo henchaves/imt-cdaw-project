@@ -14,6 +14,6 @@ class MasteredEnergySeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\MasteredEnergy::factory(300)->create();
+        \App\Models\MasteredEnergy::factory(10)->create();
     }
 }

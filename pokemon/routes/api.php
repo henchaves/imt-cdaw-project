@@ -37,6 +37,10 @@ Route::post('/register', [LoginController::class, 'register']);
 Route::get('/logout/{token}', [LoginController::class, 'logout']);
 
 // Player
+Route::get('/players', [PlayerController::class, 'getAll']);
+Route::get('/players/{id}', [PlayerController::class, 'getOneById'])->where('id', '[0-9]+');
 Route::get('/players/{name}', [PlayerController::class, 'getOneByName']);
+
+
 
 
