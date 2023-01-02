@@ -32,4 +32,10 @@ class PlayerController extends Controller
             "player" => $player
         ]);
     }
+
+    public function getOneByName($name) {
+        // return as JSON
+        $player = Player::where('name', $name)->first();
+        return response()->json($player);
+    }
 }

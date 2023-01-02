@@ -6,7 +6,8 @@ use \App\Http\Controllers\{
   HomeController, 
   PlayerController, 
   PokemonController,
-  LoginController
+  LoginController,
+  PlayController
 };
 
 /*
@@ -45,7 +46,6 @@ Route::get('/howtoplay', function() {
   return view('how_to_play');
 });
 
-// Player Profile (Authenticated)
-Route::get('/profile', function() {
-  return "My Profile";
-})->middleware('auth')->name('profile');
+// Play (Authenticated)
+Route::get('/play', [PlayController::class, 'index']);
+

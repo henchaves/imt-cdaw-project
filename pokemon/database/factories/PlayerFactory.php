@@ -17,9 +17,7 @@ class PlayerFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->unique()->userName(),
-            'email' => $this->faker->unique()->safeEmail(),
-            'password' => $this->faker->password(),
+            'name' => $this->faker->unique()->userName()
         ];
     }
 }

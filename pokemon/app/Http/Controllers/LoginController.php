@@ -7,7 +7,8 @@ use Hash;
 use Session;
 use App\Models\{
     Token,
-    User
+    User,
+    Player
 };
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -59,11 +60,24 @@ class LoginController extends Controller
 
     public function create(array $data)
     {
-      return User::create([
-        'name' => $data['name'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password'])
-      ]);
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password'])
+        ]);
+
+        // $player = Player::create([
+        //     'name' => $user->name,
+        //     'level' => 0,
+        //     'victories' => 0
+        // ]);
+
+        // create Player with same name
+        $player = new Player();
+        $player->name = $user->name;
+        $player->save();
+
+        return $user;
     }
 
     // Authenticate

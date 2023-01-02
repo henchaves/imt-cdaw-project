@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('player', function (Blueprint $table) {
             $table->id();
             $table->string('name', 32);
-            $table->string('email', 128);
-            $table->string('password', 128);
             $table->integer('level')->default(0);
             $table->integer('victories')->default(0);
         });

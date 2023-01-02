@@ -3,7 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\{
-    LoginController
+    LoginController,
+    PlayerController
   };
 
 /*
@@ -34,4 +35,8 @@ Route::post('/register', [LoginController::class, 'register']);
 
 // Logout
 Route::get('/logout/{token}', [LoginController::class, 'logout']);
+
+// Player
+Route::get('/players/{name}', [PlayerController::class, 'getOneByName']);
+
 

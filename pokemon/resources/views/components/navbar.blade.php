@@ -66,8 +66,8 @@
 
 <script>
     const buttonDiv = document.querySelector('.login-logout-button-wrapper');
-    const tokenKey = "POKEMON_BATTLES_USER_JWT"
-    const token = localStorage.getItem(tokenKey);
+    let tokenKey = "POKEMON_BATTLES_USER_JWT"
+    let token = localStorage.getItem(tokenKey);
 
     fetch(`api/checktoken/${token}`)
         .then(response => {
@@ -112,6 +112,7 @@
             usernameSpan.innerHTML = data.user.name;
         })
         .catch(error => {
-            console.log(error);
+            // console.log(error);
+            return null;
         });
 </script>
