@@ -24,6 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Check if email exists in database
 Route::get('/checkemail/{email}', [LoginController::class, 'checkEmail'])->where('email', '[a-zA-Z0-9@.]+');
 
+Route::get('/checktoken/{token}', [LoginController::class, 'checkToken']);
+
 // Authenticate
 Route::post('/authenticate', [LoginController::class, 'authenticate']);
 
@@ -31,4 +33,5 @@ Route::post('/authenticate', [LoginController::class, 'authenticate']);
 Route::post('/register', [LoginController::class, 'register']);
 
 // Logout
-Route::get('/logout', [LoginController::class, 'logout']);
+Route::get('/logout/{token}', [LoginController::class, 'logout']);
+

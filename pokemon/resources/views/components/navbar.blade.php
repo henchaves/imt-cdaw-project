@@ -44,13 +44,74 @@
                     <a class="nav-link" href="{{ url('/pokemons') }}">Pokémons</a>
                 </li>
             </ul>
-            <div class="login-button-wrapper d-flex flex-column">
+            <div class="login-logout-button-wrapper d-flex flex-column">
+            </div>
+            <!-- <div class="logout-button-wrapper d-flex flex-column" hidden>
+                <p class="text-white login-status">
+                    Logged in as <span class="text-warning">Player</span>
+                </p>
+                <a class="btn btn-bd-primary" href="{{ url('/logout') }}">Logout</a>
+            </div>
+            <div class="login-button-wrapper d-flex flex-column" hidden>
                 <p class="text-white login-status">
                     You are not logged in!
                 </p>
                 <a class="btn btn-bd-primary" href="{{ url('/login') }}">Login or Register</a>
-            </div>
+            </div> -->
             <hr>
         </div>
     </div>
+
 </nav>
+
+<script>
+    const buttonDiv = document.querySelector('.login-logout-button-wrapper');
+    const tokenKey = "POKEMON_BATTLES_USER_JWT"
+    const token = localStorage.getItem(tokenKey);
+
+    fetch(`api/checktoken/${token}`)
+        .then(response => {
+            if (response.status == 200) {
+                buttonDiv.innerHTML = `
+                    <p class="text-white login-status">
+                        Logged in as <span class="text-success" id="username-span" style="color:#F2798C;"></span>
+                    </p>
+                    <a class="btn btn-bd-primary" href="{{ url('/play') }}">Play</a>
+                    <p class="login-status">
+                        <a id="logout-button-nav" class="link-danger">Logout from account</a>
+                    </p>
+                    
+                `;
+
+                const logoutButton = document.querySelector('#logout-button-nav');
+
+                logoutButton.addEventListener('click', () => {
+                    fetch(`api/logout/${token}`)
+                        .then(response => {
+                            if (response.status == 200) {
+                                localStorage.removeItem(tokenKey);
+                                window.location.href = "/";
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                });
+            } else {
+                buttonDiv.innerHTML = `
+                    <p class="text-white login-status">
+                        You are not logged in!
+                    </p>
+                    <a id="login-button-nav" class="btn btn-bd-primary" href="{{ url('/login') }}">Login or Register</a>
+                `;
+            }
+
+            return response.json();
+        }).then(data => {
+            const usernameSpan = document.querySelector('#username-span');
+            usernameSpan.innerHTML = data.user.name;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+</script>

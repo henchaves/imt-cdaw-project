@@ -27,6 +27,18 @@ class LoginController extends Controller
         }
     }
 
+    public function checkToken(Request $request)
+    {
+        $token = $request->token;
+        $token = Token::where('token', $token)->first();
+        if ($token) {
+            $user = $this->user($token->token);
+            return response()->json(['message' => 'Token exists', 'user' => $user], 200);
+        } else {
+            return response()->json(['message' => 'Token does not exist'], 404);
+        }
+    }
+
     // Register 
     public function register(Request $request)
     {   
@@ -81,11 +93,15 @@ class LoginController extends Controller
     }
 
     
-    public function logout() {
-        Session::flush();
-        Auth::logout();
-  
-        return Redirect('login');
+    public function logout($token) {
+        $token = Token::where('token', $token)->first();
+        $token->delete();
+        return response()->json(['message' => 'Logged out'], 200);
     }
-    
+
+    public function user($token) {
+        $token = Token::where('token', $token)->first();
+        $user = User::where('id', $token->user_id)->first();
+        return $user;
+    }
 }
