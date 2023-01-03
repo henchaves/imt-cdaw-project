@@ -8,7 +8,7 @@ This web app was created following the [requirements](https://ceri-num.gitbook.i
 Pokémon Battles is a web app developed using the [Laravel](https://laravel.com/) framework.
 
 ### 3. Requirements
-You must have installed on your machine:
+You must have installed (and running) on your machine:
 - [docker](https://docs.docker.com/get-docker/)
 - [docker-compose](https://docs.docker.com/compose/install/)
 
