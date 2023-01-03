@@ -9,6 +9,7 @@ class CombatStats extends Model
 {
     use HasFactory;
     protected $table = 'combat_stats';
+    protected $fillable = ['winner_id', 'loser_id'];
 
     public function rounds() {
         return $this->hasMany(CombatRound::class, 'combat_stats_id');

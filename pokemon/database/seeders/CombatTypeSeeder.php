@@ -14,13 +14,17 @@ class CombatTypeSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
         DB::table('combat_type')->insert([
-            'name' => 'manual',
+            'name' => 'auto_random',
         ]);
 
         DB::table('combat_type')->insert([
-            'name' => 'random',
+            'name' => 'manual_rar',
+        ]);
+
+        DB::table('combat_type')->insert([
+            'name' => 'auto_rar',
         ]);
     }
 }

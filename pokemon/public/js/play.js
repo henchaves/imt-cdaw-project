@@ -56,12 +56,39 @@ function loadHistoricalBattle() {
 
 }
 
+async function loadOpponentList() {
+  const opponents = await fetch(`/api/players`);
+  let opponentsArray = await opponents.json();
+  opponentsArray = opponentsArray.filter(opponent => opponent.id !== player.id);
+  oopponentsArray = opponentsArray.sort((a, b) => a.name.localeCompare(b.name));
+
+  const opponentsSelect = document.querySelector('#opponent-select');
+  opponentsArray.forEach(opponent => {
+    const option = document.createElement('option');
+    option.value = opponent.id;
+    option.innerText = opponent.name;
+    opponentsSelect.appendChild(option);
+  });
+}
+
+
+function hookBattleButton() {
+  const battleButton = document.querySelector("#play-button");
+  const combatMode = document.querySelector("#combat-mode-select").value;
+  const playerId = player.id;
+  const opponentId = document.querySelector("#opponent-select").value;
+  battleButton.addEventListener('click', () => {
+    window.location.replace(`/combat/${combatMode}/${playerId}/${opponentId}`);
+  });
+}
+
 
 async function loadAll() {
   await checkToken();
   await loadPlayerInfo();
   loadHistoricalBattle();
-
+  await loadOpponentList();
+  hookBattleButton();
 }
 
 loadAll();
