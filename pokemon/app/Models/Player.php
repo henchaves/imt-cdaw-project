@@ -12,7 +12,7 @@ class Player extends Model
     public $timestamps = false;
 
     protected $attributes = [
-        'level' => 0,
+        'level' => 1,
         'victories' => 0
     ];
 

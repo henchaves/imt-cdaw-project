@@ -40,7 +40,7 @@ async function handleLogin() {
   if (response.status === 200) {
     const data = await response.json();
     localStorage.setItem('POKEMON_BATTLES_USER_JWT', data.token);
-    window.location.href = '/';
+    window.location.href = '/play';
   } else {
     errorMessage.parentNode.hidden = false;
     errorMessage.innerHTML = 'Error while trying to login. Please check your data and try again.';

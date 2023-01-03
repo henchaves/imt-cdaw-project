@@ -10,7 +10,7 @@ async function checkToken() {
     const dataToken = await response.json();
     user = dataToken.user;
   } else {
-    // window.location.replace('/login');
+    window.location.replace('/login');
   }
 }
 
@@ -24,7 +24,7 @@ async function loadPlayerInfo() {
     document.querySelector('#player-profile-level').innerText = player.level;
     document.querySelector('#player-profile-energies').innerText = energyNames.join(', ');
   } else {
-    // window.location.replace('/login');
+    window.location.replace('/login');
   }
 }
 
@@ -38,13 +38,15 @@ function loadHistoricalBattle() {
     const battleResult = battle.is_winner ? 'WIN' : 'LOSE';
     const battleResultColor = battle.is_winner ? 'green' : 'red';
     const replayButton = document.createElement('button');
+    // add boostrap class
+    replayButton.classList.add('btn', 'btn-outline-secondary', 'btn-sm', 'flex');
     replayButton.innerText = 'Replay';
     replayButton.addEventListener('click', () => {
       window.location.replace(`/replay/${battle.id}`);
     });
 
     battleRow.innerHTML = `
-      <td>${battleDate.toLocaleDateString()}</td>
+      <td>${battleDate.toLocaleString()}</td>
       <td>${battleOpponent}</td>
       <td style="color:${battleResultColor}">${battleResult}</td>
     `;

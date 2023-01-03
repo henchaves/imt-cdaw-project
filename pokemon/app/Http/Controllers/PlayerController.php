@@ -47,6 +47,7 @@ class PlayerController extends Controller
 
     public function getOneById($id) {
         $player = Player::find($id);
+        
         $energies = [];
         foreach ($player->energies as $energy) {
             $energies[] = $energy->energy;
@@ -61,6 +62,9 @@ class PlayerController extends Controller
             $combat["opponent"] = $combat->loser;
             $combats[] = $combat;
         }
+
+        $player["victories"] = count($player->combat_wins);
+        $player["level"] = intval($player->victories/10) + 1;
 
         for($i = 0; $i < count($player->combat_loses); $i++) {
             $combat = $player->combat_loses[$i];
