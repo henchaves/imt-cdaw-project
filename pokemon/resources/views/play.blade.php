@@ -42,9 +42,10 @@
               <table class="table table-striped table-hover">
                 <thead>
                   <tr>
-                    <th scope="col">Battle ID</th>
+                    <th scope="col">Date</th>
                     <th scope="col">Opponent</th>
                     <th scope="col">Result</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody id="battles-table-body">
@@ -54,7 +55,19 @@
           </div>
         </div>
       </div>
-    </div>
+      <div class="col-12 col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Play now</h5>
+            <p class="card-text">Choose your opponent:</p>
+            <div class="input-group mb-3">
+              <select class="form-select" id="opponent-select">
+              </select>
+              <button class="btn btn-primary" type="button" id="play-button">Play</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </main>
 @endsection
 

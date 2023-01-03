@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('pokemon', function (Blueprint $table) {
             $table->id();
             $table->string('name', 64);
-            $table->foreignId('energy_id')->constrained('energy');
+            $table->foreignId('energy_id')->constrained('energy')->onDelete('cascade');
             $table->integer('level');
             $table->integer('max_health_points');
             $table->integer('normal_damage');

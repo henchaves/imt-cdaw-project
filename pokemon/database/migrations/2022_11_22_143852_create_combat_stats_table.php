@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('combat_stats', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('winner_id')->constrained('player');
-            $table->foreignId('loser_id')->constrained('player');
-            $table->foreignId('combat_type_id')->constrained('combat_type');
+            $table->foreignId('winner_id')->constrained('player')->onDelete('cascade');
+            $table->foreignId('loser_id')->constrained('player')->onDelete('cascade');
+            $table->foreignId('combat_type_id')->constrained('combat_type')->onDelete('cascade');
             $table->timestamps();
         });
     }

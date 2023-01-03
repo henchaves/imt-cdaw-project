@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('mastered_energy', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('player_id')->constrained('player');
-            $table->foreignId('energy_id')->constrained('energy');
+            $table->foreignId('player_id')->constrained('player')->onDelete('cascade');
+            $table->foreignId('energy_id')->constrained('energy')->onDelete('cascade');
         });
     }
 

@@ -51,8 +51,28 @@ class PlayerController extends Controller
         foreach ($player->energies as $energy) {
             $energies[] = $energy->energy;
         }
-        
         $player["energies"] = $energies;
+
+        $combats = [];
+
+        for($i = 0; $i < count($player->combat_wins); $i++) {
+            $combat = $player->combat_wins[$i];
+            $combat["is_winner"] = true;
+            $combat["opponent"] = $combat->loser;
+            $combats[] = $combat;
+        }
+
+        for($i = 0; $i < count($player->combat_loses); $i++) {
+            $combat = $player->combat_loses[$i];
+            $combat["is_winner"] = false;
+            $combat["opponent"] = $combat->winner;
+            $combats[] = $combat;
+        }
+
+        usort($combats, function($a, $b) {
+            return strtotime($b->created_at) - strtotime($a->created_at);
+        });
+        $player["combats"] = $combats;
         return response()->json($player);
     }
 }
