@@ -11,13 +11,16 @@ class Player extends Model
     protected $table = 'player';
     public $timestamps = false;
 
-    protected $attributes = [
-        'level' => 1,
-        'victories' => 0
-    ];
-
     public function combat_wins() {
         return $this->hasMany(CombatStats::class, 'winner_id');
+    }
+
+    public function victories() {
+        return $this->combat_wins()->count();
+    }
+
+    public function level() {
+        return intval($this->victories()/10) + 1;
     }
 
     public function combat_loses() {

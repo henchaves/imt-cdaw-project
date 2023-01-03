@@ -21,6 +21,7 @@ class CombatController extends Controller
 
     public function create($combatMode, $player1Id, $player2Id) {
         $player1_model = Player::where('id', $player1Id)->first();
+        $player1_model["energies"] = $player1_model->energies()->get();
         $player2_model = Player::where('id', $player2Id)->first();
 
         $combat = new CombatStats();

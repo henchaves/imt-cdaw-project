@@ -29,7 +29,8 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-pink">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ url('/') }}">Pokémon Battles</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -46,18 +47,6 @@
             </ul>
             <div class="login-logout-button-wrapper d-flex flex-column">
             </div>
-            <!-- <div class="logout-button-wrapper d-flex flex-column" hidden>
-                <p class="text-white login-status">
-                    Logged in as <span class="text-warning">Player</span>
-                </p>
-                <a class="btn btn-bd-primary" href="{{ url('/logout') }}">Logout</a>
-            </div>
-            <div class="login-button-wrapper d-flex flex-column" hidden>
-                <p class="text-white login-status">
-                    You are not logged in!
-                </p>
-                <a class="btn btn-bd-primary" href="{{ url('/login') }}">Login or Register</a>
-            </div> -->
             <hr>
         </div>
     </div>
@@ -69,7 +58,7 @@
     let tokenKey = "POKEMON_BATTLES_USER_JWT"
     let token = localStorage.getItem(tokenKey);
 
-    fetch(`api/checktoken/${token}`)
+    fetch(`http://localhost/api/checktoken/${token}`)
         .then(response => {
             if (response.status == 200) {
                 buttonDiv.innerHTML = `
@@ -86,7 +75,7 @@
                 const logoutButton = document.querySelector('#logout-button-nav');
 
                 logoutButton.addEventListener('click', () => {
-                    fetch(`api/logout/${token}`)
+                    fetch(`http://localhost/api/logout/${token}`)
                         .then(response => {
                             if (response.status == 200) {
                                 localStorage.removeItem(tokenKey);

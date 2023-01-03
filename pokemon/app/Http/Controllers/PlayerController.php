@@ -53,6 +53,8 @@ class PlayerController extends Controller
             $energies[] = $energy->energy;
         }
         $player["energies"] = $energies;
+        $player["victories"] = $player->victories();
+        $player["level"] = $player->level();
 
         $combats = [];
 
@@ -62,9 +64,6 @@ class PlayerController extends Controller
             $combat["opponent"] = $combat->loser;
             $combats[] = $combat;
         }
-
-        $player["victories"] = count($player->combat_wins);
-        $player["level"] = intval($player->victories/10) + 1;
 
         for($i = 0; $i < count($player->combat_loses); $i++) {
             $combat = $player->combat_loses[$i];
@@ -76,7 +75,9 @@ class PlayerController extends Controller
         usort($combats, function($a, $b) {
             return strtotime($b->created_at) - strtotime($a->created_at);
         });
+
         $player["combats"] = $combats;
+
         return response()->json($player);
     }
 }

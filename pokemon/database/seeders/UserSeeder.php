@@ -27,5 +27,11 @@ class UserSeeder extends Seeder
             'email' => 'misty@email.com',
             'password' => 'password'
         ]);
+
+        UserController::create([
+            'name' => 'brock',
+            'email' => 'brock@email.com',
+            'password' => 'password'
+        ]);
     }
 }
