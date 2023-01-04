@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{CombatStats, CombatType, Player};
+use App\Models\{CombatStats, CombatRound, CombatType, Player};
 
 class CombatController extends Controller
 {
@@ -47,5 +47,16 @@ class CombatController extends Controller
             'winner_id' => $winnerId,
             'loser_id' => $loserId
         ]);
+    }
+
+    public static function createRound($combatId, $logText) {
+        $combatRound = new CombatRound();
+        $combatRound->combat_stats_id = $combatId;
+        $combatRound->log = $logText;
+        $combatRound->save();
+    }
+
+    public static function getRounds($combatId) {
+        return CombatRound::where('combat_stats_id', $combatId)->get();
     }
 }

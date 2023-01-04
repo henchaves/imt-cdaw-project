@@ -25,7 +25,7 @@ class UserController extends Controller
         $player->name = $data['name'];
         $player->save();
 
-        for($i = 0; $i < 3; $i++) {
+        for($i = 0; $i < 5; $i++) {
             $masteredEnergy = new MasteredEnergy();
             $masteredEnergy->player_id = $user->id;
             $masteredEnergy->energy_id = Energy::inRandomOrder()->first()->id;

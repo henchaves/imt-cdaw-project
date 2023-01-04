@@ -13,7 +13,6 @@
 
     <main>
         <div class="container">
-            <!-- Create sections: Player profile, historical battles, and play now -->
             <div class="row">
                 <div class="col-12 col-md-3">
                     <div class="card">
@@ -78,8 +77,30 @@
                     </div>
                 </div>
     </main>
+    {{-- simple modal --}}
+    <div class="modal fade" id="replay-modal" tabindex="-1" role="dialog" aria-labelledby="replay-modal-label"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="replay-modal-label">Replay</h5>
+                    </button>
+                </div>
+                <div class="modal-body" id="replay-modal-body">
+                    <p>Teste</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                        id="close-modal-button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('js')
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+        crossorigin="anonymous"></script>
     <script src=" {{ asset('js/play.js') }}"></script>
 @endsection

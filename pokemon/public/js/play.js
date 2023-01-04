@@ -2,6 +2,12 @@
 let user = null;
 let player = null;
 
+const modal = $('#replay-modal');
+const closeButtonModal = document.querySelector('#close-modal-button');
+closeButtonModal.addEventListener('click', () => {
+  modal.modal('toggle')
+});
+
 async function checkToken() {
   const userToken = localStorage.getItem('POKEMON_BATTLES_USER_JWT');
   const response = await fetch(`/api/checktoken/${userToken}`);
@@ -28,6 +34,24 @@ async function loadPlayerInfo() {
   }
 }
 
+async function handleReplayButton(e) {
+  const battleId = e.target.dataset.battleid;
+  modal.modal('toggle');
+  const modalBody = document.querySelector('#replay-modal-body');
+  const response = await fetch(`/api/replays/${battleId}`);
+  let replays = await response.json();
+  // order by id
+  replays = replays.sort((a, b) => a.id - b.id);
+  let modalText = '';
+  replays.forEach(replay => {
+    const replayLog = replay.log;
+    modalText += replayLog;
+    modalText += '<br>';
+  });
+
+  modalBody.innerHTML = modalText;
+}
+
 function loadHistoricalBattle() {
   const battles = player.combats.slice(0, 10);
   const battleBody = document.querySelector('#battles-table-body');
@@ -38,12 +62,12 @@ function loadHistoricalBattle() {
     const battleResult = battle.is_winner ? 'WIN' : 'LOSE';
     const battleResultColor = battle.is_winner ? 'green' : 'red';
     const replayButton = document.createElement('button');
-    // add boostrap class
+    replayButton.dataset.battleid = battle.id;
+    replayButton.dataset.toggle = 'modal';
+    replayButton.dataset.target = '#replay-modal';
     replayButton.classList.add('btn', 'btn-outline-secondary', 'btn-sm', 'flex');
     replayButton.innerText = 'Replay';
-    replayButton.addEventListener('click', () => {
-      window.location.replace(`/replay/${battle.id}`);
-    });
+    replayButton.addEventListener('click', (e) => { handleReplayButton(e) });
 
     battleRow.innerHTML = `
       <td>${battleDate.toLocaleString()}</td>
@@ -81,6 +105,8 @@ function hookBattleButton() {
     window.location.replace(`/combat/${combatMode}/${playerId}/${opponentId}`);
   });
 }
+
+//
 
 
 async function loadAll() {

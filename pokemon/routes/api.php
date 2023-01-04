@@ -4,7 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\{
     LoginController,
-    PlayerController
+    PlayerController,
+    CombatController
   };
 
 /*
@@ -18,13 +19,8 @@ use \App\Http\Controllers\{
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-// Check if email exists in database
+// Checks
 Route::get('/checkemail/{email}', [LoginController::class, 'checkEmail'])->where('email', '[a-zA-Z0-9@.]+');
-
 Route::get('/checktoken/{token}', [LoginController::class, 'checkToken']);
 
 // Authenticate
@@ -41,6 +37,8 @@ Route::get('/players', [PlayerController::class, 'getAll']);
 Route::get('/players/{id}', [PlayerController::class, 'getOneById'])->where('id', '[0-9]+');
 Route::get('/players/{name}', [PlayerController::class, 'getOneByName']);
 
+// Replay
+Route::get('/replays/{combatId}', [CombatController::class, 'getRounds']);
 
 
 

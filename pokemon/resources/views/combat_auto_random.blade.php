@@ -170,63 +170,133 @@
                                     $normal_damage = 0;
                                     $special_damage = 0;
                                     $special_defense = 0;
+                                    $logText = '';
+                                    $combatId = $combat->id;
+                                    
+                                    //Player Drafts
+                                    foreach ($player1Pokemons as $pokemon) {
+                                        $logText = $player1->name . ' (P1) drafts ' . $pokemon['name'] . '<br>';
+                                        \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                        echo $logText;
+                                    }
+                                    
+                                    foreach ($player2Pokemons as $pokemon) {
+                                        $logText = $player2->name . ' (P2) drafts ' . $pokemon['name'] . '<br>';
+                                        \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                        echo $logText;
+                                    }
+                                    
+                                    //Battle starts
+                                    $logText = 'Battle starts!' . '<br>';
+                                    \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                    echo $logText;
+                                    
+                                    $currentPokemonPlayer1 = $player1Pokemons[$currentPokemonPlayer1Index];
+                                    $logText = $currentPokemonPlayer1['name'] . ' (P1) is now active!' . '<br>';
+                                    \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                    echo $logText;
+                                    
+                                    $currentPokemonPlayer2 = $player2Pokemons[$currentPokemonPlayer2Index];
+                                    $logText = $currentPokemonPlayer2['name'] . ' (P2) is now active!' . '<br>';
+                                    \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                    echo $logText;
                                     
                                     // Battle loop
                                     while (!$finished) {
                                         // Player 1 attacks
                                         $normal_damage = rand(1, 3) * $currentPokemonPlayer1['normal_damage'];
-                                        echo $currentPokemonPlayer1['name'] . ' (P1) attacks ' . $currentPokemonPlayer2['name'] . ' (P2) with ' . $normal_damage . ' damage!' . '<br>';
+                                        $logText = $currentPokemonPlayer1['name'] . ' (P1) attacks ' . $currentPokemonPlayer2['name'] . ' (P2) with ' . $normal_damage . ' damage!' . '<br>';
+                                        \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                        echo $logText;
                                         $currentPokemonPlayer2['max_health_points'] -= $normal_damage;
-                                        echo $currentPokemonPlayer2['name'] . ' (P2) has ' . $currentPokemonPlayer2['max_health_points'] . ' HP left!' . '<br>';
+                                        $logText = $currentPokemonPlayer2['name'] . ' (P2) has ' . $currentPokemonPlayer2['max_health_points'] . ' HP left!' . '<br>';
+                                        \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                        echo $logText;
                                         $special_damage = rand(0, 2) * $currentPokemonPlayer1['special_damage'];
-                                        echo $currentPokemonPlayer1['name'] . ' (P1) attacks ' . $currentPokemonPlayer2['name'] . ' (P2) with ' . $special_damage . ' damage (special)!' . '<br>';
+                                        $logText = $currentPokemonPlayer1['name'] . ' (P1) attacks ' . $currentPokemonPlayer2['name'] . ' (P2) with ' . $special_damage . ' damage (special)!' . '<br>';
+                                        \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                        echo $logText;
                                         $currentPokemonPlayer2['max_health_points'] -= $special_damage;
-                                        echo $currentPokemonPlayer2['name'] . ' (P2) has ' . $currentPokemonPlayer2['max_health_points'] . ' HP left!' . '<br>';
+                                        $logText = $currentPokemonPlayer2['name'] . ' (P2) has ' . $currentPokemonPlayer2['max_health_points'] . ' HP left!' . '<br>';
+                                        \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                        echo $logText;
                                     
                                         // Player 2 attacks
                                         $normal_damage = rand(1, 3) * $currentPokemonPlayer2['normal_damage'];
-                                        echo $currentPokemonPlayer2['name'] . ' (P2) attacks ' . $currentPokemonPlayer1['name'] . ' (P1) with ' . $normal_damage . ' damage!' . '<br>';
+                                        $logText = $currentPokemonPlayer2['name'] . ' (P2) attacks ' . $currentPokemonPlayer1['name'] . ' (P1) with ' . $normal_damage . ' damage!' . '<br>';
+                                        \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                        echo $logText;
                                         $currentPokemonPlayer1['max_health_points'] -= $normal_damage;
-                                        echo $currentPokemonPlayer1['name'] . ' (P1) has ' . $currentPokemonPlayer1['max_health_points'] . ' HP left!' . '<br>';
+                                        $logText = $currentPokemonPlayer1['name'] . ' (P1) has ' . $currentPokemonPlayer1['max_health_points'] . ' HP left!' . '<br>';
+                                        \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                        echo $logText;
                                         $special_damage = rand(0, 1) * $currentPokemonPlayer2['special_damage'];
-                                        echo $currentPokemonPlayer2['name'] . ' (P2) attacks ' . $currentPokemonPlayer1['name'] . ' (P1) with ' . $special_damage . ' damage (special)!' . '<br>';
+                                        $logText = $currentPokemonPlayer2['name'] . ' (P2) attacks ' . $currentPokemonPlayer1['name'] . ' (P1) with ' . $special_damage . ' damage (special)!' . '<br>';
+                                        \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                        echo $logText;
                                         $currentPokemonPlayer1['max_health_points'] -= $special_damage;
-                                        echo $currentPokemonPlayer1['name'] . ' (P1) has ' . $currentPokemonPlayer1['max_health_points'] . ' HP left!' . '<br>';
+                                        $logText = $currentPokemonPlayer1['name'] . ' (P1) has ' . $currentPokemonPlayer1['max_health_points'] . ' HP left!' . '<br>';
+                                        \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                        echo $logText;
                                     
                                         // Check if a pokemon is dead
                                         if ($currentPokemonPlayer1['max_health_points'] <= 0) {
-                                            echo $currentPokemonPlayer1['name'] . ' (P1) is dead!' . '<br>';
+                                            $logText = $currentPokemonPlayer1['name'] . ' (P1) is dead!' . '<br>';
+                                            \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                            echo $logText;
                                             $currentPokemonPlayer1Index++;
                                             if ($currentPokemonPlayer1Index >= count($player1Pokemons)) {
                                                 $finished = true;
                                                 $victory = 2;
-                                                echo 'Player 2 wins!' . '<br>';
+                                                $logText = 'Player 2 wins!' . '<br>';
+                                                \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                                echo $logText;
                                             } else {
                                                 $currentPokemonPlayer1 = $player1Pokemons[$currentPokemonPlayer1Index];
-                                                echo $currentPokemonPlayer1['name'] . ' (P1) is now active!' . '<br>';
+                                                $logText = $currentPokemonPlayer1['name'] . ' (P1) is now active!' . '<br>';
+                                                \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                                echo $logText;
                                             }
                                         } else {
-                                            // regenerate life with special defense
-                                            // echo $currentPokemonPlayer1['name'] . ' (P1) regenerates ' . $currentPokemonPlayer1['special_defense'] . ' life!' . '<br>';
-                                            // $currentPokemonPlayer1['max_health_points'] += $currentPokemonPlayer1['special_defense'];
-                                            // echo $currentPokemonPlayer1['name'] . ' (P1) has ' . $currentPokemonPlayer1['max_health_points'] . ' life left!' . '<br>';
+                                            $specialDefenseRand = rand(1, 3);
+                                            if ($specialDefenseRand == 1) {
+                                                $currentPokemonPlayer1['max_health_points'] += $currentPokemonPlayer1['special_defense'];
+                                                $logText = $currentPokemonPlayer1['name'] . ' (P1) regenerates ' . $currentPokemonPlayer1['special_defense'] . ' HP!' . '<br>';
+                                                \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                                echo $logText;
+                                                $logText = $currentPokemonPlayer1['name'] . ' (P1) has ' . $currentPokemonPlayer1['max_health_points'] . ' HP left!' . '<br>';
+                                                echo $logText;
+                                                \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                            }
                                         }
                                         if ($currentPokemonPlayer2['max_health_points'] <= 0) {
-                                            echo $currentPokemonPlayer2['name'] . ' (P2) is dead!' . '<br>';
+                                            $logText = $currentPokemonPlayer2['name'] . ' (P2) is dead!' . '<br>';
+                                            \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                            echo $logText;
                                             $currentPokemonPlayer2Index++;
                                             if ($currentPokemonPlayer2Index >= count($player2Pokemons)) {
                                                 $finished = true;
                                                 $victory = 1;
-                                                echo 'Player 1 wins!' . '<br>';
+                                                $logText = 'Player 1 wins!' . '<br>';
+                                                \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                                echo $logText;
                                             } else {
                                                 $currentPokemonPlayer2 = $player2Pokemons[$currentPokemonPlayer2Index];
-                                                echo $currentPokemonPlayer2['name'] . ' (P2) is now active!' . '<br>';
+                                                $logText = $currentPokemonPlayer2['name'] . ' (P2) is now active!' . '<br>';
+                                                \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                                echo $logText;
                                             }
                                         } else {
-                                            // regenerate life with special defense
-                                            //echo $currentPokemonPlayer2['name'] . ' (P2) regenerates ' . $currentPokemonPlayer2['special_defense'] . ' HP!';
-                                            //$currentPokemonPlayer2['max_health_points'] += $currentPokemonPlayer2['special_defense'];
-                                            //echo $currentPokemonPlayer2['name'] . ' (P2) has ' . $currentPokemonPlayer2['max_health_points'] . ' HP left!';
+                                            $specialDefenseRand = rand(1, 3);
+                                            if ($specialDefenseRand == 1) {
+                                                $currentPokemonPlayer2['max_health_points'] += $currentPokemonPlayer2['special_defense'];
+                                                $logText = $currentPokemonPlayer2['name'] . ' (P2) regenerates ' . $currentPokemonPlayer2['special_defense'] . ' HP!' . '<br>';
+                                                \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                                echo $logText;
+                                                $logText = $currentPokemonPlayer2['name'] . ' (P2) has ' . $currentPokemonPlayer2['max_health_points'] . ' HP left!' . '<br>';
+                                                echo $logText;
+                                                \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                            }
                                         }
                                     }
                                     
@@ -235,14 +305,16 @@
                                     $playerDefeat = $victory == 1 ? $player2 : $player1;
                                     \App\Http\Controllers\CombatController::update($combat->id, $playerVictory->id, $playerDefeat->id);
                                     
-                                    $addEnergy = rand(0, 1);
+                                    $addEnergy = rand(1, 5);
                                     if ($addEnergy == 1) {
                                         $masteredEnergy = new \App\Models\MasteredEnergy();
                                         $masteredEnergy->player_id = $playerVictory->id;
                                         $randomEnergy = \App\Models\Energy::inRandomOrder()->first();
                                         $masteredEnergy->energy_id = $randomEnergy->id;
                                         $masteredEnergy->save();
-                                        echo $playerVictory->name . ' has won ' . $randomEnergy->name . ' energy!' . '<br>';
+                                        $logText = $playerVictory->name . ' has won ' . $randomEnergy->name . ' energy!' . '<br>';
+                                        \App\Http\Controllers\CombatController::createRound($combatId, $logText);
+                                        echo $logText;
                                     }
                                 @endphp
                             </div>
