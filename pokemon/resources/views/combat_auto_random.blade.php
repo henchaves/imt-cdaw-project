@@ -234,6 +234,16 @@
                                     $playerVictory = $victory == 1 ? $player1 : $player2;
                                     $playerDefeat = $victory == 1 ? $player2 : $player1;
                                     \App\Http\Controllers\CombatController::update($combat->id, $playerVictory->id, $playerDefeat->id);
+                                    
+                                    $addEnergy = rand(0, 1);
+                                    if ($addEnergy == 1) {
+                                        $masteredEnergy = new \App\Models\MasteredEnergy();
+                                        $masteredEnergy->player_id = $playerVictory->id;
+                                        $randomEnergy = \App\Models\Energy::inRandomOrder()->first();
+                                        $masteredEnergy->energy_id = $randomEnergy->id;
+                                        $masteredEnergy->save();
+                                        echo $playerVictory->name . ' has won ' . $randomEnergy->name . ' energy!' . '<br>';
+                                    }
                                 @endphp
                             </div>
                     </div>

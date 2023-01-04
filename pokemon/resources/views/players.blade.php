@@ -37,7 +37,11 @@
                             @php
                                 $defeats = count($player->combat_loses);
                                 $victories = count($player->combat_wins);
-                                $winRate = ($victories / ($victories + $defeats)) * 100;
+                                if ($victories == 0 && $defeats == 0) {
+                                    $winRate = 0;
+                                } else {
+                                    $winRate = ($victories / ($victories + $defeats)) * 100;
+                                }
                                 $winRate = round($winRate, 2);
                                 $energyIds = array_unique($player->energies->pluck('energy_id')->toArray());
                                 $energyNames = [];
