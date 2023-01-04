@@ -29,7 +29,7 @@ async function loadPlayerInfo() {
 }
 
 function loadHistoricalBattle() {
-  const battles = player.combats;
+  const battles = player.combats.slice(0, 10);
   const battleBody = document.querySelector('#battles-table-body');
   battles.forEach(battle => {
     const battleRow = document.createElement('tr');

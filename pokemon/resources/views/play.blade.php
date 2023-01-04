@@ -37,7 +37,7 @@
                 <div class="col-12 col-md-5">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Combats History</h5>
+                            <h5 class="card-title">Combats History (last 10)</h5>
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
