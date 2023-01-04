@@ -18,7 +18,7 @@ async function loadPlayerInfo() {
   const response = await fetch(`/api/players/${user.id}`);
   if (response.status === 200) {
     player = await response.json();
-    const energyNames = player.energies.map(energy => energy.energy.name);
+    const energyNames = [... new Set(player.energies.map(energy => energy.energy.name))];
     document.querySelector('#player-profile-username').innerText = player.name;
     document.querySelector('#player-profile-wins').innerText = player.victories;
     document.querySelector('#player-profile-level').innerText = player.level;
@@ -76,8 +76,8 @@ function hookBattleButton() {
   const battleButton = document.querySelector("#play-button");
   const combatMode = document.querySelector("#combat-mode-select").value;
   const playerId = player.id;
-  const opponentId = document.querySelector("#opponent-select").value;
   battleButton.addEventListener('click', () => {
+    const opponentId = document.querySelector("#opponent-select").value;
     window.location.replace(`/combat/${combatMode}/${playerId}/${opponentId}`);
   });
 }

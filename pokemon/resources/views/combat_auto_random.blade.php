@@ -229,6 +229,11 @@
                                             //echo $currentPokemonPlayer2['name'] . ' (P2) has ' . $currentPokemonPlayer2['max_health_points'] . ' HP left!';
                                         }
                                     }
+                                    
+                                    // Save battle
+                                    $playerVictory = $victory == 1 ? $player1 : $player2;
+                                    $playerDefeat = $victory == 1 ? $player2 : $player1;
+                                    \App\Http\Controllers\CombatController::update($combat->id, $playerVictory->id, $playerDefeat->id);
                                 @endphp
                             </div>
                     </div>
