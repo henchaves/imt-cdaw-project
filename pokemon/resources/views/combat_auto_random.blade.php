@@ -156,8 +156,81 @@
             <div class="col-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Battle Log</h5>
-                        <hr>
+                        <h3 class="card-title text-center">Battle Log</h5>
+                            <hr>
+                            <div>
+                                @php
+                                    $finished = false;
+                                    $victory = 0;
+                                    $currentPokemonPlayer1Index = 0;
+                                    $currentPokemonPlayer1 = $player1Pokemons[$currentPokemonPlayer1Index];
+                                    $currentPokemonPlayer2Index = 0;
+                                    $currentPokemonPlayer2 = $player2Pokemons[$currentPokemonPlayer2Index];
+                                    
+                                    $normal_damage = 0;
+                                    $special_damage = 0;
+                                    $special_defense = 0;
+                                    
+                                    // Battle loop
+                                    while (!$finished) {
+                                        // Player 1 attacks
+                                        $normal_damage = rand(1, 3) * $currentPokemonPlayer1['normal_damage'];
+                                        echo $currentPokemonPlayer1['name'] . ' (P1) attacks ' . $currentPokemonPlayer2['name'] . ' (P2) with ' . $normal_damage . ' damage!' . '<br>';
+                                        $currentPokemonPlayer2['max_health_points'] -= $normal_damage;
+                                        echo $currentPokemonPlayer2['name'] . ' (P2) has ' . $currentPokemonPlayer2['max_health_points'] . ' HP left!' . '<br>';
+                                        $special_damage = rand(0, 2) * $currentPokemonPlayer1['special_damage'];
+                                        echo $currentPokemonPlayer1['name'] . ' (P1) attacks ' . $currentPokemonPlayer2['name'] . ' (P2) with ' . $special_damage . ' damage (special)!' . '<br>';
+                                        $currentPokemonPlayer2['max_health_points'] -= $special_damage;
+                                        echo $currentPokemonPlayer2['name'] . ' (P2) has ' . $currentPokemonPlayer2['max_health_points'] . ' HP left!' . '<br>';
+                                    
+                                        // Player 2 attacks
+                                        $normal_damage = rand(1, 3) * $currentPokemonPlayer2['normal_damage'];
+                                        echo $currentPokemonPlayer2['name'] . ' (P2) attacks ' . $currentPokemonPlayer1['name'] . ' (P1) with ' . $normal_damage . ' damage!' . '<br>';
+                                        $currentPokemonPlayer1['max_health_points'] -= $normal_damage;
+                                        echo $currentPokemonPlayer1['name'] . ' (P1) has ' . $currentPokemonPlayer1['max_health_points'] . ' HP left!' . '<br>';
+                                        $special_damage = rand(0, 1) * $currentPokemonPlayer2['special_damage'];
+                                        echo $currentPokemonPlayer2['name'] . ' (P2) attacks ' . $currentPokemonPlayer1['name'] . ' (P1) with ' . $special_damage . ' damage (special)!' . '<br>';
+                                        $currentPokemonPlayer1['max_health_points'] -= $special_damage;
+                                        echo $currentPokemonPlayer1['name'] . ' (P1) has ' . $currentPokemonPlayer1['max_health_points'] . ' HP left!' . '<br>';
+                                    
+                                        // Check if a pokemon is dead
+                                        if ($currentPokemonPlayer1['max_health_points'] <= 0) {
+                                            echo $currentPokemonPlayer1['name'] . ' (P1) is dead!' . '<br>';
+                                            $currentPokemonPlayer1Index++;
+                                            if ($currentPokemonPlayer1Index >= count($player1Pokemons)) {
+                                                $finished = true;
+                                                $victory = 2;
+                                                echo 'Player 2 wins!' . '<br>';
+                                            } else {
+                                                $currentPokemonPlayer1 = $player1Pokemons[$currentPokemonPlayer1Index];
+                                                echo $currentPokemonPlayer1['name'] . ' (P1) is now active!' . '<br>';
+                                            }
+                                        } else {
+                                            // regenerate life with special defense
+                                            // echo $currentPokemonPlayer1['name'] . ' (P1) regenerates ' . $currentPokemonPlayer1['special_defense'] . ' life!' . '<br>';
+                                            // $currentPokemonPlayer1['max_health_points'] += $currentPokemonPlayer1['special_defense'];
+                                            // echo $currentPokemonPlayer1['name'] . ' (P1) has ' . $currentPokemonPlayer1['max_health_points'] . ' life left!' . '<br>';
+                                        }
+                                        if ($currentPokemonPlayer2['max_health_points'] <= 0) {
+                                            echo $currentPokemonPlayer2['name'] . ' (P2) is dead!' . '<br>';
+                                            $currentPokemonPlayer2Index++;
+                                            if ($currentPokemonPlayer2Index >= count($player2Pokemons)) {
+                                                $finished = true;
+                                                $victory = 1;
+                                                echo 'Player 1 wins!' . '<br>';
+                                            } else {
+                                                $currentPokemonPlayer2 = $player2Pokemons[$currentPokemonPlayer2Index];
+                                                echo $currentPokemonPlayer2['name'] . ' (P2) is now active!' . '<br>';
+                                            }
+                                        } else {
+                                            // regenerate life with special defense
+                                            //echo $currentPokemonPlayer2['name'] . ' (P2) regenerates ' . $currentPokemonPlayer2['special_defense'] . ' HP!';
+                                            //$currentPokemonPlayer2['max_health_points'] += $currentPokemonPlayer2['special_defense'];
+                                            //echo $currentPokemonPlayer2['name'] . ' (P2) has ' . $currentPokemonPlayer2['max_health_points'] . ' HP left!';
+                                        }
+                                    }
+                                @endphp
+                            </div>
                     </div>
                 </div>
             </div>
@@ -260,6 +333,8 @@
         </div>
         </div>
     </main>
+
+
 @endsection
 
 @section('js')

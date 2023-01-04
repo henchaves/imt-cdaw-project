@@ -21,10 +21,10 @@ class PokemonFactory extends Factory
             'name' => $this->faker->unique()->word,
             'energy_id' => Energy::all()->random()->id,
             'level' => $this->faker->numberBetween(1, 10),
-            'max_health_points' => $this->faker->numberBetween(50, 100),
-            'normal_damage' => $this->faker->numberBetween(1, 10),
+            'max_health_points' => $this->faker->numberBetween(40, 80),
+            'normal_damage' => $this->faker->numberBetween(3, 10),
             'special_damage' => $this->faker->numberBetween(10, 50),
-            'special_defense' => $this->faker->numberBetween(1, 50),
+            'special_defense' => $this->faker->numberBetween(1, 10),
             'image_url' => $this->faker->imageUrl(640,480)
         ];
     }
