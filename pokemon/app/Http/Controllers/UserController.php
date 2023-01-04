@@ -25,20 +25,12 @@ class UserController extends Controller
         $player->name = $data['name'];
         $player->save();
 
-        $masteredEnergy1 = new MasteredEnergy();
-        $masteredEnergy1->player_id = $user->id;
-        $masteredEnergy1->energy_id = Energy::inRandomOrder()->first()->id;
-        $masteredEnergy1->save();
-
-        $masteredEnergy2 = new MasteredEnergy();
-        $masteredEnergy2->player_id = $user->id;
-        $masteredEnergy2->energy_id = Energy::inRandomOrder()->first()->id;
-        $masteredEnergy2->save();
-
-        $masteredEnergy3 = new MasteredEnergy();
-        $masteredEnergy3->player_id = $user->id;
-        $masteredEnergy3->energy_id = Energy::inRandomOrder()->first()->id;
-        $masteredEnergy3->save();
+        for($i = 0; $i < 3; $i++) {
+            $masteredEnergy = new MasteredEnergy();
+            $masteredEnergy->player_id = $user->id;
+            $masteredEnergy->energy_id = Energy::inRandomOrder()->first()->id;
+            $masteredEnergy->save();
+        }
 
         return $user;
     }

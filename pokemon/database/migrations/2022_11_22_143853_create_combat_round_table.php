@@ -16,9 +16,8 @@ return new class extends Migration
         Schema::create('combat_round', function (Blueprint $table) {
             $table->id();
             $table->foreignId('combat_stats_id')->constrained('combat_stats')->onDelete('cascade');
-            $table->foreignId('pokemon_id')->constrained('pokemon')->onDelete('cascade');
-            $table->foreignId('player_id')->constrained('player')->onDelete('cascade');
-            $table->integer('order');
+            $table->text('log');
+            $table->timestamps();
         });
     }
 

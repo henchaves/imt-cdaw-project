@@ -1,3 +1,7 @@
 $(document).ready(function () {
-  $('#pokemonsTable').DataTable();
+  $('#pokemonsTable').DataTable({
+    "order": [
+      [4, "asc"]
+    ]
+  });
 });

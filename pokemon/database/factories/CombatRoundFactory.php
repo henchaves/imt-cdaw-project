@@ -17,10 +17,8 @@ class CombatRoundFactory extends Factory
     public function definition()
     {
         return [
-            'pokemon_id' => Pokemon::all()->random()->id,
-            'player_id' => Player::all()->random()->id,
             'combat_stats_id' => CombatStats::all()->random()->id,
-            'order' => $this->faker->numberBetween(1, 3)
+            'log' => $this->faker->text(100),
         ];
     }
 }

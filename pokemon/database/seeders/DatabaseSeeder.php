@@ -20,9 +20,9 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             // PlayerSeeder::class,
             CombatTypeSeeder::class,
-            CombatStatsSeeder::class,
-            CombatRoundSeeder::class,
-            MasteredEnergySeeder::class,
+            // CombatStatsSeeder::class,
+            // CombatRoundSeeder::class,
+            // MasteredEnergySeeder::class,
         ]);
     }
 }

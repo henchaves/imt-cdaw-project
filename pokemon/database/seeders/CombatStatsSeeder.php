@@ -14,6 +14,6 @@ class CombatStatsSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\CombatStats::factory(20)->create();
+        \App\Models\CombatStats::factory(50)->create();
     }
 }

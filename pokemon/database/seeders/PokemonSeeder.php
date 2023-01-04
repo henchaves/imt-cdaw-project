@@ -20,18 +20,20 @@ class PokemonSeeder extends Seeder
         $pokemons = json_decode($json, true);
 
         foreach ($pokemons as $pokemon) {
-            Pokemon::create(
-                [
-                    "name" => $pokemon["name"],
-                    "energy_id" => Energy::all()->random()->id,
-                    "level" => rand(1, 10),
-                    "max_health_points" => rand(50, 100),
-                    "normal_damage" => rand(1, 10),
-                    "special_damage" => rand(10, 50),
-                    "special_defense" => rand(1, 50),
-                    "image_url" => $pokemon["url"]
-                ]
+            for ($i = 0; $i < 2; $i++) {
+                Pokemon::create(
+                    [
+                        "name" => $pokemon["name"],
+                        "energy_id" => Energy::all()->random()->id,
+                        "level" => rand(1, 10),
+                        "max_health_points" => rand(50, 100),
+                        "normal_damage" => rand(1, 10),
+                        "special_damage" => rand(10, 50),
+                        "special_defense" => rand(1, 50),
+                        "image_url" => $pokemon["url"]
+                    ]
                 );
+            }
         }
     }
 }
