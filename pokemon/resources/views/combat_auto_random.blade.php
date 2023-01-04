@@ -258,7 +258,7 @@
                                                 echo $logText;
                                             }
                                         } else {
-                                            $specialDefenseRand = rand(1, 3);
+                                            $specialDefenseRand = rand(1, 5);
                                             if ($specialDefenseRand == 1) {
                                                 $currentPokemonPlayer1['max_health_points'] += $currentPokemonPlayer1['special_defense'];
                                                 $logText = $currentPokemonPlayer1['name'] . ' (P1) regenerates ' . $currentPokemonPlayer1['special_defense'] . ' HP!' . '<br>';
